@@ -42,4 +42,4 @@ fromEither (Right x) = pure x
 -- |Convert an 'Exceptional' to an 'Either' 'String'
 toEither :: Exceptional a -> Either String a
 toEither (Failure s) = Left s
-toEither (Success x) = Success x
+toEither (Success x) = Right x
