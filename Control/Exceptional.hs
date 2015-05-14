@@ -28,3 +28,8 @@ instance Monad Exceptional where
   (>>=) (Failure s) _ = Failure s
   fail = Failure
   return = pure
+
+-- |Convert 'Exceptional' into another 'Monad'
+runExceptional :: Monad m => Exceptional x -> m x
+runExceptional (Failure s) = fail s
+runExceptional (Success s) = pure s
