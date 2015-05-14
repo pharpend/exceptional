@@ -1,6 +1,7 @@
 module Control.Exceptional where
 
 import Control.Applicative
+import Data.Monoid (mempty)
 
 -- |This is basically specialized 'Either String', or 'Maybe' with error
 -- messages.
@@ -20,6 +21,7 @@ instance Applicative Exceptional where
   _ <*> Failure s = Failure s
 
 instance Alternative Exceptional where
+  empty = Failure mempty
   Success a <|> _ = Success a
   _ <|> Failure s = Failure s
 
