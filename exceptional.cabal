@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                exceptional
-version:             0.1.0.1
+version:             0.1.1.0
 synopsis:            A type for pure code that can fail.
 description:         
   This is a very simple type:
@@ -18,10 +18,13 @@ description:
   because I was dissatisfied with the @Monad@ instance for @Either@. In this
   type, @fail = Failure@. It's rather simple.
   .
-  === Changes ===
+  **Changes**
+  .
+  [0.1.1.0] Add @runExceptional@ function.
   .
   [0.1.0.1] Minor documentation changes. No changes to the API.
-  [0.1]     Initial version
+  .
+  [0.1.0.0] Initial version
 homepage:            https://github.com/pharpend/exceptional
 license:             BSD2
 license-file:        LICENSE
@@ -49,4 +52,4 @@ source-repository this
   type: git
   location: https://github.com/pharpend/exceptional.git
   branch: master
-  tag: 0.1.0.1
+  tag: 0.1.1.0
