@@ -33,3 +33,8 @@ instance Monad Exceptional where
 runExceptional :: Monad m => Exceptional x -> m x
 runExceptional (Failure s) = fail s
 runExceptional (Success s) = pure s
+
+-- |Convert an 'Either' 'String' to an 'Exceptional'
+fromEither :: Either String a -> Exceptional a
+fromEither (Left s) = fail s
+fromEither (Right x) = pure x
