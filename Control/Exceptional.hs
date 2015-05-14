@@ -38,3 +38,8 @@ runExceptional (Success s) = pure s
 fromEither :: Either String a -> Exceptional a
 fromEither (Left s) = fail s
 fromEither (Right x) = pure x
+
+-- |Convert an 'Exceptional' to an 'Either' 'String'
+toEither :: Exceptional a -> Either String a
+toEither (Failure s) = Left s
+toEither (Success x) = Success x
