@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                exceptional
-version:             0.1.1.0
+version:             0.1.1.1
 synopsis:            A type for pure code that can fail.
 description:         
   This is a very simple type:
@@ -18,7 +18,9 @@ description:
   because I was dissatisfied with the @Monad@ instance for @Either@. In this
   type, @fail = Failure@. It's rather simple.
   .
-  **Changes**
+  == Changes
+  .
+  [0.1.1.1] Formatting fix to the haddock documentation.
   .
   [0.1.1.0] Add @runExceptional@ function.
   .
@@ -52,4 +54,4 @@ source-repository this
   type: git
   location: https://github.com/pharpend/exceptional.git
   branch: master
-  tag: 0.1.1.0
+  tag: 0.1.1.1
