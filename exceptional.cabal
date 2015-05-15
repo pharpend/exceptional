@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                exceptional
-version:             0.1.4.0
+version:             0.1.4.1
 synopsis:            Essentially the Maybe type with error messages.
 description:         
   This is a very simple type:
@@ -19,6 +19,8 @@ description:
   type, @fail = Failure@. It's rather simple.
   .
   Changes
+  .
+  [0.1.4.1] Documentation enhancements/fixes.
   .
   [0.1.4.0] Added @fromMaybe@ and @toMaybe@ functions, and a link to the bug
             tracker.
@@ -67,4 +69,4 @@ source-repository this
   type: git
   location: https://github.com/pharpend/exceptional.git
   branch: master
-  tag: 0.1.4.0
+  tag: 0.1.4.1
