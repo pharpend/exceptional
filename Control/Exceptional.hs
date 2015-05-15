@@ -36,6 +36,16 @@ runExceptional :: Monad m => Exceptional x -> m x
 runExceptional (Failure s) = fail s
 runExceptional (Success s) = pure s
 
+-- |Convert a 'Maybe' to an 'Exceptional'
+fromMaybe :: String -> Maybe a -> Exceptional a
+fromMaybe s Nothing = fail s
+fromMaybe s (Just x) = pure x
+
+-- |Convert a 'Maybe' to an 'Exceptional'
+toMaybe :: Exceptional a -> Maybe a
+toMaybe (Success x) = Just x
+toMaybe (Failure _) = Nothing
+
 -- |Convert an 'Either' 'String' to an 'Exceptional'
 fromEither :: Either String a -> Exceptional a
 fromEither (Left s) = fail s
