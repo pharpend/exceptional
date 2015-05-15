@@ -39,6 +39,7 @@ description:
   .
   [0.1.0.0] Initial version
 homepage:            https://github.com/pharpend/exceptional
+bug-reports:         https://github.com/pharpend/exceptional/issues
 license:             BSD2
 license-file:        LICENSE
 author:              Peter Harpending
