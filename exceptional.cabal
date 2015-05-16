@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                exceptional
-version:             0.1.4.1
+version:             0.1.4.2
 synopsis:            Essentially the Maybe type with error messages.
 description:         
   This is a very simple type:
@@ -46,4 +46,4 @@ source-repository this
   type: git
   location: https://github.com/pharpend/exceptional.git
   branch: master
-  tag: 0.1.4.1
+  tag: 0.1.4.2
