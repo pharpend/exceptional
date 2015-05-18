@@ -41,7 +41,7 @@ instance Monad Exceptional where
 -- > runExceptional (Success s) = pure s
 runExceptional :: Monad m => Exceptional x -> m x
 runExceptional (Failure s) = fail s
-runExceptional (Success s) = pure s
+runExceptional (Success s) = return s
 
 -- |Convert a 'Maybe' to an 'Exceptional'
 -- 
