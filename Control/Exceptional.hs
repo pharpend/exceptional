@@ -2,6 +2,7 @@ module Control.Exceptional where
 
 import Control.Applicative
 import Data.Monoid (mempty)
+import System.IO.Error
 
 -- |This is basically specialized 'Either String', or 'Maybe' with error
 -- messages.
@@ -75,3 +76,11 @@ fromEither (Right x) = pure x
 toEither :: Exceptional a -> Either String a
 toEither (Failure s) = Left s
 toEither (Success x) = Right x
+
+-- |A wrapper around 'tryIOError'. Encapsulates I/O exceptions in the
+-- 'Exceptional' monad.
+exceptIO :: IO a -> IO (Exceptional a)
+exceptIO x = do x_ <- tryIOError x
+                case x_ of
+                  Left err -> return $ Failure (show err)
+                  Right val -> return $ Success val
