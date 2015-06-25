@@ -68,7 +68,6 @@ extra-source-files:
 library
   build-depends:       base ==4.*
   exposed-modules:     Control.Exceptional
-  default-extensions:  Haskell98
   default-language:    Haskell98
 
 source-repository head
