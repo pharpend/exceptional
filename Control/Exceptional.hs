@@ -1,10 +1,13 @@
 {-# LANGUAGE CPP #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Control.Exceptional where
 
 import Control.Applicative
+import Control.Monad.Catch
 #if __GLASGOW_HASKELL < 710
 import Data.Foldable
+import Prelude hiding (foldl)
 #endif
 import Data.Monoid (mempty)
 import System.IO.Error
@@ -89,6 +92,15 @@ exceptIO x = do x_ <- tryIOError x
                 case x_ of
                   Left err -> return $ Failure (show err)
                   Right val -> return $ Success val
+
+-- |Run an exception-prone action in another monad, catch the errors in 'Exceptional'.
+exceptional :: MonadCatch m
+            => m a -> m (Exceptional a)
+exceptional x =
+  do (x' :: Either SomeException a) <- try x
+     case x' of
+       Left err -> return $ Failure (show err)
+       Right val -> return $ Success val
 
 -- |Get all of the 'Failure's from a bunch of 'Exceptional's
 failures :: Foldable t
