@@ -67,6 +67,7 @@ extra-source-files:
 
 library
   build-depends:       base ==4.*
+  other-extensions:    CPP
   exposed-modules:     Control.Exceptional
   default-language:    Haskell98
 

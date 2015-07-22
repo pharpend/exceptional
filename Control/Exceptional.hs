@@ -1,6 +1,11 @@
+{-# LANGUAGE CPP #-}
+
 module Control.Exceptional where
 
 import Control.Applicative
+#if __GLASGOW_HASKELL < 710
+import Data.Foldable
+#endif
 import Data.Monoid (mempty)
 import System.IO.Error
 
@@ -84,3 +89,44 @@ exceptIO x = do x_ <- tryIOError x
                 case x_ of
                   Left err -> return $ Failure (show err)
                   Right val -> return $ Success val
+
+-- |Get all of the 'Failure's from a bunch of 'Exceptional's
+failures :: Foldable t
+         => t (Exceptional x) -> [String]
+failures =
+  foldl (\accum current ->
+           case current of
+             Failure s -> accum ++ [s]
+             Success _ -> accum)
+        []
+
+-- |Get all of the 'Success'es from a bunch of 'Exceptional's
+successes :: Foldable t
+          => t (Exceptional x) -> [x]
+successes =
+  foldl (\accum current ->
+           case current of
+             Failure _ -> accum
+             Success x -> accum ++ [x])
+        []
+
+-- |Given a number of 'Exceptional' values:
+-- 
+-- * If all are 'Success'ful, then return 'Right' with the sucesses * If there
+-- is at least one 'Failure', then return 'Left' the list of error messages
+foldExceptional :: (Foldable t)
+                => t (Exceptional x) -> Either [String] [x]
+foldExceptional =
+  foldl (\soFar foo ->
+           case soFar of
+             Left x ->
+               Left $
+               case foo of
+                 Failure s -> x ++ [s]
+                 Success _ -> x
+             Right y ->
+               Right $
+               case foo of
+                 Failure _ -> y
+                 Success s -> y ++ [s])
+        (Right [])
