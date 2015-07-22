@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                exceptional
-version:             0.1.5.1
+version:             0.2.0.0
 synopsis:            Essentially the Maybe type with error messages.
 description:         
   This is a very simple type:
@@ -19,6 +19,9 @@ description:
   type, @fail = Failure@. It's rather simple.
   .
   Changes
+  .
+  [0.2.0.0] Add @exceptional@ function to encapsulate ordinary exceptions in the
+            @Exceptional@ monad. Add folding functions.
   .
   [0.1.5.0] Add @exceptIO@ function to encapsulate IO errors in the
             @Exceptional@ monad.
@@ -66,8 +69,11 @@ extra-source-files:
   README.md
 
 library
-  build-depends:       base ==4.*
+  build-depends:
+      base ==4.*
+    , exceptions
   other-extensions:    CPP
+                       ScopedTypeVariables
   exposed-modules:     Control.Exceptional
   default-language:    Haskell98
 
@@ -80,4 +86,4 @@ source-repository this
   type: git
   location: https://github.com/pharpend/exceptional.git
   branch: master
-  tag: 0.1.5.1
+  tag: 0.2.0.0
