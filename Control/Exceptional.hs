@@ -130,15 +130,9 @@ foldExceptional :: (Foldable t)
                 => t (Exceptional x) -> Either [String] [x]
 foldExceptional =
   foldl (\soFar foo ->
-           case soFar of
-             Left x ->
-               Left $
-               case foo of
-                 Failure s -> x ++ [s]
-                 Success _ -> x
-             Right y ->
-               Right $
-               case foo of
-                 Failure _ -> y
-                 Success s -> y ++ [s])
+           case (foo, soFar) of
+              (Failure s, Left x) -> Left (x ++ [s])
+              (Failure s, Right _) -> Left [s]
+              (Success _, Left x) -> Left x
+              (Success s, Right x) -> Right (x ++ [s]))
         (Right [])
