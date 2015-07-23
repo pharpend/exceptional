@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                exceptional
-version:             0.2.0.0
+version:             0.3.0.0
 synopsis:            Essentially the Maybe type with error messages.
 description:         
   This is a very simple type:
@@ -20,8 +20,15 @@ description:
   .
   Changes
   .
+  [0.3.0.0] Fix erroneous behavior in @foldExceptional@ function added in
+            version 0.2. This release actually does break (or rather fix) the
+            @foldExceptional@ function, so be careful.
+  .
   [0.2.0.0] Add @exceptional@ function to encapsulate ordinary exceptions in the
             @Exceptional@ monad. Add folding functions.
+            .
+            This release does not actually break the API, however I was rather
+            tired when I chose the version number. This should be 0.1.6.
   .
   [0.1.5.0] Add @exceptIO@ function to encapsulate IO errors in the
             @Exceptional@ monad.
@@ -54,7 +61,7 @@ description:
   [0.1.0.1] Minor documentation changes. No changes to the API.
   .
   [0.1.0.0] Initial version
-homepage:            https://github.com/pharpend/exceptional
+homepage:            https://github.com/
 bug-reports:         https://github.com/pharpend/exceptional/issues
 license:             BSD2
 license-file:        LICENSE
@@ -86,4 +93,4 @@ source-repository this
   type: git
   location: https://github.com/pharpend/exceptional.git
   branch: master
-  tag: 0.2.0.0
+  tag: 0.3.0.0
